@@ -9,7 +9,9 @@ A self-hosted, real-time traffic analysis application that can be deployed indep
 - Real-time visitor and session tracking
 - Page, referrer, device, and browser breakdowns
 - Country and city location views
+- A high-contrast map with active countries in red, visitor markers in white, and dashboard accents in orange
 - Turkish and English dashboard titles
+- A responsive dashboard header and controls for both Turkish and English content
 - Origin and site-name validation
 - Optional external administrator authentication
 - Isolated data storage for every website

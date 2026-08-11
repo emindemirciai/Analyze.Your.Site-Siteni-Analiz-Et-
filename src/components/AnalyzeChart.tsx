@@ -16,7 +16,7 @@ export default function AnalyzeChart() {
             </div>
             <div 
               style={{ height: `${item.views}%` }} 
-              className="w-full bg-blue-500/10 hover:bg-blue-500 rounded-t-sm transition-all cursor-pointer border-t-2 border-blue-500"
+              className="w-full bg-orange-500/10 hover:bg-orange-500 rounded-t-sm transition-all cursor-pointer border-t-2 border-orange-500"
             ></div>
           </div>
         ))}

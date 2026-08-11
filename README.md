@@ -9,7 +9,9 @@ Kendi web siteniz için bağımsız dağıtabileceğiniz gerçek zamanlı trafik
 - Gerçek zamanlı ziyaret ve oturum takibi
 - Sayfa, yönlendiren kaynak, cihaz ve tarayıcı kırılımları
 - Ülke ve şehir bazlı konum görünümü
+- Aktif ülkeleri kırmızı, ziyaretçi noktalarını beyaz ve panel vurgularını turuncu gösteren yüksek kontrastlı harita
 - Türkçe ve İngilizce panel başlıkları
+- Türkçe ve İngilizce içerikte farklı ekran genişliklerine uyum sağlayan panel başlığı ve denetimler
 - Origin ve site adı doğrulaması
 - İsteğe bağlı harici yönetici oturumu
 - Her site için bağımsız veri alanı

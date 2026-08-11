@@ -551,12 +551,12 @@ export default function WorldMap({
 
   return (
     <div className={`relative ${className}`}>
-      <div className="absolute right-5 top-5 z-10 flex overflow-hidden rounded-lg border border-blue-950/70 bg-blue-950/60 shadow">
+      <div className="absolute right-5 top-5 z-10 flex overflow-hidden rounded-lg border border-orange-950/70 bg-orange-950/60 shadow">
         <button
           type="button"
           onClick={zoomOut}
           disabled={position.zoom <= 1}
-          className="h-8 w-9 text-sm font-bold text-white transition hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-8 w-9 text-sm font-bold text-white transition hover:bg-orange-900 disabled:cursor-not-allowed disabled:opacity-40"
           aria-label={language === "tr" ? "Haritayı uzaklaştır" : "Zoom out"}
           title={language === "tr" ? "Uzaklaştır" : "Zoom out"}
         >
@@ -565,7 +565,7 @@ export default function WorldMap({
         <button
           type="button"
           onClick={resetZoom}
-          className="h-8 min-w-14 border-x border-blue-900 px-3 text-sm font-bold text-white transition hover:bg-blue-900"
+          className="h-8 min-w-14 border-x border-orange-900 px-3 text-sm font-bold text-white transition hover:bg-orange-900"
           aria-label={language === "tr" ? "Yakınlaştırmayı sıfırla" : "Reset zoom"}
           title={language === "tr" ? "Sıfırla" : "Reset"}
         >
@@ -575,7 +575,7 @@ export default function WorldMap({
           type="button"
           onClick={zoomIn}
           disabled={position.zoom >= 6}
-          className="h-8 w-9 text-sm font-bold text-white transition hover:bg-blue-900 disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-8 w-9 text-sm font-bold text-white transition hover:bg-orange-900 disabled:cursor-not-allowed disabled:opacity-40"
           aria-label={language === "tr" ? "Haritayı yakınlaştır" : "Zoom in"}
           title={language === "tr" ? "Yakınlaştır" : "Zoom in"}
         >
@@ -615,7 +615,7 @@ export default function WorldMap({
                     style={{
                       default: {
                         fill: active
-                          ? `rgba(37, 99, 235, ${intensity})`
+                          ? `rgba(220, 38, 38, ${intensity})`
                           : isDark
                             ? "rgba(39, 39, 42, 0.96)"
                             : "rgba(226, 232, 240, 0.98)",
@@ -627,12 +627,12 @@ export default function WorldMap({
                       },
                       hover: {
                         fill: active
-                          ? "rgba(59, 130, 246, 1)"
+                          ? "rgba(239, 68, 68, 1)"
                           : isDark
                             ? "rgba(63, 63, 70, 1)"
                             : "rgba(203, 213, 225, 1)",
                         stroke: active
-                          ? "rgba(147, 197, 253, 0.95)"
+                          ? "rgba(254, 202, 202, 0.95)"
                           : isDark
                             ? "rgba(113, 113, 122, 1)"
                             : "rgba(148, 163, 184, 1)",
@@ -642,7 +642,7 @@ export default function WorldMap({
                       },
                       pressed: {
                         fill: active
-                          ? "rgba(37, 99, 235, 1)"
+                          ? "rgba(220, 38, 38, 1)"
                           : isDark
                             ? "rgba(63, 63, 70, 1)"
                             : "rgba(203, 213, 225, 1)",
@@ -662,11 +662,11 @@ export default function WorldMap({
 
             return (
               <Marker key={`marker-${country.id}`} coordinates={coordinates}>
-                {/* hale + buyuk nokta: kucuk ada ulkeler de gorunur ve hoverlanabilir olsun */}
-                <circle r={11} fill="rgba(59, 130, 246, 0.22)" stroke="none" />
+                {/* The white halo keeps small island countries visible without changing the marker color. */}
+                <circle r={11} fill="rgba(255, 255, 255, 0.18)" stroke="none" />
                 <circle
                   r={6.5}
-                  fill="#3b82f6"
+                  fill="#ffffff"
                   stroke="#ffffff"
                   strokeWidth={2}
                   style={{ cursor: "pointer" }}
@@ -701,7 +701,7 @@ export default function WorldMap({
           <div className="mb-1 flex items-center gap-2 font-bold">
             <span
               className={`h-2 w-2 rounded-full ${
-                tooltip.visitors > 0 ? "bg-blue-400" : "bg-zinc-500"
+                tooltip.visitors > 0 ? "bg-white" : "bg-zinc-500"
               }`}
             />
             {tooltip.name}

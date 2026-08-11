@@ -28,9 +28,9 @@ export default function TrafficHeatmap() {
                   <span 
                     className={`w-2.5 h-2.5 rounded-full transition-all ${
                       isActive 
-                        ? 'bg-blue-600 shadow-sm shadow-blue-500/50 scale-125' 
+                        ? 'bg-orange-600 shadow-sm shadow-orange-500/50 scale-125'
                         : isSemiActive 
-                        ? 'bg-blue-400 dark:bg-blue-800/60' 
+                        ? 'bg-orange-400 dark:bg-orange-800/60'
                         : 'bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700'
                     }`}
                   ></span>

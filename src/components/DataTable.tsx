@@ -24,10 +24,10 @@ export default function DataTable({ title, data, type }: DataTableProps) {
             {/* Umami İlerleme Efekti Çubuğu */}
             <div 
               style={{ width: `${item.percentage}%` }} 
-              className="absolute left-0 top-0 bottom-0 bg-blue-50/60 group-hover:bg-blue-50 transition-colors z-0"
+              className="absolute left-0 top-0 bottom-0 bg-orange-50/60 group-hover:bg-orange-50 transition-colors z-0"
             ></div>
 
-            <span className={`z-10 font-medium truncate pr-4 ${type === 'url' ? 'text-blue-600 font-mono text-xs' : 'text-gray-700'}`}>
+            <span className={`z-10 font-medium truncate pr-4 ${type === 'url' ? 'text-orange-600 font-mono text-xs' : 'text-gray-700'}`}>
               {item.label}
             </span>
             <span className="z-10 font-semibold text-gray-900 bg-white/80 px-2 py-0.5 rounded border border-gray-100 shadow-sm text-xs">

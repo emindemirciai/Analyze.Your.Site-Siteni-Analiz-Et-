@@ -879,7 +879,7 @@ function SectionCard({
       } ${className}`}
     >
       <div className="mb-5 flex items-center justify-between">
-        <h2 className="border-b-2 border-blue-500 pb-3 text-lg font-bold text-blue-500">
+        <h2 className="border-b-2 border-orange-500 pb-3 text-lg font-bold text-orange-500">
           {title}
         </h2>
         {rightText ? (
@@ -916,16 +916,16 @@ function TrafficChart({
           className={`${narrow ? "text-[10px]" : "text-xs"} font-bold leading-none ${
             item.value > 0
               ? isDark
-                ? "text-blue-300"
-                : "text-blue-600"
+                ? "text-orange-300"
+                : "text-orange-600"
               : "text-transparent"
           }`}
         >
           {item.value > 0 ? item.value : "0"}
         </span>
         <div
-          className={`w-full ${narrow ? "max-w-[34px]" : "max-w-[54px]"} rounded-t border-t-2 border-blue-400 ${
-            isDark ? "bg-blue-950/60" : "bg-blue-100"
+          className={`w-full ${narrow ? "max-w-[34px]" : "max-w-[54px]"} rounded-t border-t-2 border-orange-400 ${
+            isDark ? "bg-orange-950/60" : "bg-orange-100"
           }`}
           style={{ height }}
           title={`${item.time} · ${item.value} ziyaretçi`}
@@ -1188,83 +1188,87 @@ export default function DashboardClient({ site }: { site: AnalyzeSitePublicConfi
     >
       <div className="mx-auto max-w-7xl">
         <header className="mb-10 border-b border-current/10 pb-8">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-            <div>
-              <div className="mb-3 flex items-center gap-3">
-                <span className="h-3 w-3 rounded-full bg-blue-600" />
-                <h1 className="text-3xl font-black">{t.title}</h1>
-                <span className={isDark ? "text-zinc-500" : "text-slate-500"}>{t.panel}</span>
+          <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-start">
+            <div className="min-w-0">
+              <div className="mb-2 flex items-center gap-3">
+                <span className="h-3 w-3 shrink-0 rounded-full bg-orange-500" />
+                <h1 className="min-w-0 text-2xl font-black leading-tight sm:text-3xl">{t.title}</h1>
               </div>
-              <p className={isDark ? "text-zinc-500" : "text-slate-500"}>{t.subtitle}</p>
+              <p className={`text-sm font-semibold ${isDark ? "text-zinc-400" : "text-slate-600"}`}>
+                {t.panel}
+              </p>
+              <p className={`mt-2 ${isDark ? "text-zinc-500" : "text-slate-500"}`}>{t.subtitle}</p>
               {(isLoading || apiError) && (
-                <p className={`mt-3 text-sm ${apiError ? "text-red-500" : "text-blue-500"}`}>
+                <p className={`mt-3 text-sm ${apiError ? "text-red-500" : "text-orange-500"}`}>
                   {apiError || t.loading}
                 </p>
               )}
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {site.authMode !== "none" && (
-              <button
-                type="button"
-                onClick={() => void logout()}
-                className={`flex h-10 items-center gap-2 rounded-lg border px-3 text-sm font-semibold transition ${
-                  isDark ? "border-zinc-800 bg-zinc-900 text-zinc-200 hover:bg-zinc-800" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
-                }`}
-              >
-                <LogOut size={16} /> {language === 'tr' ? 'Çıkış' : 'Sign out'}
-              </button>
-              )}
-              <button
-                onClick={() => setTheme(isDark ? "light" : "dark")}
-                className={`rounded-xl border px-4 py-2 text-sm font-bold transition ${
-                  isDark
-                    ? "border-zinc-800 bg-zinc-900 text-zinc-200 hover:bg-zinc-800"
-                    : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
-                }`}
-              >
-                {isDark ? "☀️" : "🌙"} {isDark ? t.light : t.dark}
-              </button>
+            <div className="flex max-w-full flex-col gap-2 sm:items-start xl:items-end">
+              <div className="flex max-w-full flex-wrap gap-2 xl:justify-end">
+                {site.authMode !== "none" && (
+                  <button
+                    type="button"
+                    onClick={() => void logout()}
+                    className={`flex h-10 items-center gap-2 rounded-lg border px-3 text-sm font-semibold transition ${
+                      isDark ? "border-zinc-800 bg-zinc-900 text-zinc-200 hover:bg-zinc-800" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
+                    }`}
+                  >
+                    <LogOut size={16} /> {language === 'tr' ? 'Çıkış' : 'Sign out'}
+                  </button>
+                )}
+                <button
+                  onClick={() => setTheme(isDark ? "light" : "dark")}
+                  className={`rounded-xl border px-4 py-2 text-sm font-bold transition ${
+                    isDark
+                      ? "border-zinc-800 bg-zinc-900 text-zinc-200 hover:bg-zinc-800"
+                      : "border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
+                  }`}
+                >
+                  {isDark ? "☀️" : "🌙"} {isDark ? t.light : t.dark}
+                </button>
 
-              <div
-                className={`rounded-xl border p-1 ${
-                  isDark ? "border-zinc-800 bg-zinc-900" : "border-slate-200 bg-white"
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => setLanguage("tr")}
-                  className={`rounded-lg px-3 py-2 text-sm font-bold transition ${
-                    language === "tr"
-                      ? isDark
-                        ? "bg-zinc-800 text-white"
-                        : "bg-slate-100 text-slate-950"
-                      : isDark
-                        ? "text-zinc-500 hover:text-white"
-                        : "text-slate-400 hover:text-slate-900"
+                <div
+                  className={`rounded-xl border p-1 ${
+                    isDark ? "border-zinc-800 bg-zinc-900" : "border-slate-200 bg-white"
                   }`}
                 >
-                  TR
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setLanguage("en")}
-                  className={`rounded-lg px-3 py-2 text-sm font-bold transition ${
-                    language === "en"
-                      ? isDark
-                        ? "bg-zinc-800 text-white"
-                        : "bg-slate-100 text-slate-950"
-                      : isDark
-                        ? "text-zinc-500 hover:text-white"
-                        : "text-slate-400 hover:text-slate-900"
-                  }`}
-                >
-                  EN
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setLanguage("tr")}
+                    className={`rounded-lg px-3 py-2 text-sm font-bold transition ${
+                      language === "tr"
+                        ? isDark
+                          ? "bg-zinc-800 text-white"
+                          : "bg-slate-100 text-slate-950"
+                        : isDark
+                          ? "text-zinc-500 hover:text-white"
+                          : "text-slate-400 hover:text-slate-900"
+                    }`}
+                  >
+                    TR
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLanguage("en")}
+                    className={`rounded-lg px-3 py-2 text-sm font-bold transition ${
+                      language === "en"
+                        ? isDark
+                          ? "bg-zinc-800 text-white"
+                          : "bg-slate-100 text-slate-950"
+                        : isDark
+                          ? "text-zinc-500 hover:text-white"
+                          : "text-slate-400 hover:text-slate-900"
+                    }`}
+                  >
+                    EN
+                  </button>
+                </div>
               </div>
 
               <div
-                className={`rounded-xl border p-1 ${
+                className={`flex max-w-full overflow-x-auto rounded-xl border p-1 ${
                   isDark ? "border-zinc-800 bg-zinc-900" : "border-slate-200 bg-white"
                 }`}
               >

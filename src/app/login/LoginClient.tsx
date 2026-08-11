@@ -44,7 +44,7 @@ export default function LoginClient({ title, description }: LoginClientProps) {
     <main className="grid min-h-screen place-items-center bg-[#090a0e] px-5 py-10 text-white">
       <section className="w-full max-w-[420px] rounded-lg border border-zinc-800 bg-[#111217] p-7 shadow-2xl shadow-black/40">
         <div className="mb-7 flex items-center gap-3">
-          <span className="grid h-11 w-11 place-items-center rounded-lg border border-blue-500/30 bg-blue-500/10 text-blue-400">
+          <span className="grid h-11 w-11 place-items-center rounded-lg border border-orange-500/30 bg-orange-500/10 text-orange-400">
             <Activity size={23} />
           </span>
           <div>
@@ -67,7 +67,7 @@ export default function LoginClient({ title, description }: LoginClientProps) {
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="mt-2 h-12 w-full rounded-md border border-zinc-700 bg-black px-4 text-white outline-none transition focus:border-blue-500"
+              className="mt-2 h-12 w-full rounded-md border border-zinc-700 bg-black px-4 text-white outline-none transition focus:border-orange-500"
             />
           </label>
           <label className="block text-sm font-medium text-zinc-200">
@@ -78,14 +78,14 @@ export default function LoginClient({ title, description }: LoginClientProps) {
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
-              className="mt-2 h-12 w-full rounded-md border border-zinc-700 bg-black px-4 text-white outline-none transition focus:border-blue-500"
+              className="mt-2 h-12 w-full rounded-md border border-zinc-700 bg-black px-4 text-white outline-none transition focus:border-orange-500"
             />
           </label>
           {message && <p role="alert" className="text-sm text-red-400">{message}</p>}
           <button
             type="submit"
             disabled={pending}
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-md bg-blue-600 font-semibold transition hover:bg-blue-500 disabled:cursor-wait disabled:opacity-60"
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-md bg-orange-600 font-semibold transition hover:bg-orange-500 disabled:cursor-wait disabled:opacity-60"
           >
             <LogIn size={18} /> {pending ? "Kontrol ediliyor..." : "Giriş yap"}
           </button>
