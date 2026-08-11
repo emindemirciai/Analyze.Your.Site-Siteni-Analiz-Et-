@@ -3,6 +3,12 @@ import {
   getAnalyzeSiteConfig,
   getAnalyzeSessionCookieName,
 } from "../../../../lib/siteConfig";
+import {
+  extractPlatformToken,
+  getPlatformMessage,
+  readPlatformResponse,
+  validatePlatformAdmin,
+} from "../../../../lib/platformAuth";
 
 export const runtime = "nodejs";
 
@@ -31,35 +37,36 @@ export async function POST(request: Request) {
       body: JSON.stringify({ email, password }),
       cache: "no-store",
     });
-    const loginData = await loginResponse.json().catch(() => ({}));
+    const loginData = await readPlatformResponse(loginResponse);
+    const token = extractPlatformToken(loginData);
 
-    if (!loginResponse.ok || typeof loginData.token !== "string") {
+    if (!loginResponse.ok || !token) {
       return NextResponse.json(
         {
-          message: typeof loginData.message === "string"
-            ? loginData.message
-            : "Giriş yapılamadı.",
+          message: getPlatformMessage(
+            loginData,
+            loginResponse.ok
+              ? "Yetkilendirme sunucusu erişim anahtarı döndürmedi."
+              : "Giriş yapılamadı.",
+          ),
         },
-        { status: loginResponse.status || 401 },
+        { status: loginResponse.ok ? 502 : loginResponse.status },
       );
     }
 
-    const adminResponse = await fetch(`${site.authApiUrl}/api/admin/session`, {
-      headers: { Authorization: `Bearer ${loginData.token}` },
-      cache: "no-store",
-    });
+    const authorization = await validatePlatformAdmin(site.authApiUrl, token);
 
-    if (!adminResponse.ok) {
+    if (authorization.ok === false) {
       return NextResponse.json(
-        { message: "Bu panel yalnızca yetkili platform yöneticilerine açıktır." },
-        { status: 403 },
+        { message: authorization.message },
+        { status: authorization.status },
       );
     }
 
     const response = NextResponse.json({ ok: true });
     response.cookies.set({
       name: getAnalyzeSessionCookieName(site),
-      value: loginData.token,
+      value: token,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",

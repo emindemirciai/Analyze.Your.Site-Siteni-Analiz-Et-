@@ -4,6 +4,7 @@ import {
   getAnalyzeSessionCookieName,
   type AnalyzeSiteConfig,
 } from "./lib/siteConfig";
+import { validatePlatformAdmin } from "./lib/platformAuth";
 
 function configurationError(error: unknown) {
   const message = error instanceof Error ? error.message : "Siteni Analiz Et yapılandırması okunamadı.";
@@ -44,20 +45,13 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get(getAnalyzeSessionCookieName(site))?.value;
   if (!token) return reject(request, site, 401, "Yönetici girişi gerekli.");
 
-  try {
-    const response = await fetch(`${site.authApiUrl}/api/admin/session`, {
-      headers: { Authorization: `Bearer ${token}` },
-      cache: "no-store",
-    });
-
-    if (!response.ok) {
-      return reject(request, site, 401, "Yönetici oturumu geçersiz veya süresi dolmuş.");
-    }
-
-    return NextResponse.next();
-  } catch {
-    return reject(request, site, 503, "Yetkilendirme sunucusuna ulaşılamadı.");
+  const authorization = await validatePlatformAdmin(site.authApiUrl, token);
+  if (authorization.ok === false) {
+    const status = authorization.status >= 500 ? 503 : 401;
+    return reject(request, site, status, authorization.message);
   }
+
+  return NextResponse.next();
 }
 
 export const config = {

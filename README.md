@@ -61,7 +61,9 @@ ANALYZE_AUTH_MODE=platform-admin
 ANALYZE_AUTH_API_URL=https://api.yourwebsite.com
 ```
 
-Yetkilendirme API'sinin `/api/auth/login` ve `/api/admin/session` uçlarını sağlaması gerekir.
+Giriş endpointi `/api/auth/login` olmalıdır. Yanıttaki `token`, `accessToken` veya `access_token` alanı otomatik algılanır. Yönetici yetkisi önce `/api/admin/session`, bu endpoint yoksa `/api/auth/me` üzerinden doğrulanır. `/api/auth/me` kullanıldığında kullanıcının yetkili bir yönetici rolüne sahip olması gerekir.
+
+Desteklenen yönetici rolleri: `ADMIN`, `OWNER`, `SUPER_ADMIN`, `GAME_ADMIN`, `CONTENT_EDITOR`, `ANALYST`, `SUPPORT` ve `MODERATOR`.
 
 Harici yönetici girişi kullanılmayacak bağımsız kurulumlarda `ANALYZE_AUTH_MODE=none` yazın ve `ANALYZE_AUTH_API_URL` değerini boş bırakın.
 

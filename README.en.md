@@ -61,7 +61,9 @@ ANALYZE_AUTH_MODE=platform-admin
 ANALYZE_AUTH_API_URL=https://api.yourwebsite.com
 ```
 
-The authentication API must provide `/api/auth/login` and `/api/admin/session` endpoints.
+The login endpoint must be `/api/auth/login`. The `token`, `accessToken`, or `access_token` field in its response is detected automatically. Administrator access is verified through `/api/admin/session` first and falls back to `/api/auth/me` when that endpoint is unavailable. When `/api/auth/me` is used, the user must have a privileged administrator role.
+
+Supported administrator roles: `ADMIN`, `OWNER`, `SUPER_ADMIN`, `GAME_ADMIN`, `CONTENT_EDITOR`, `ANALYST`, `SUPPORT`, and `MODERATOR`.
 
 For a standalone deployment without external administrator authentication, set `ANALYZE_AUTH_MODE=none` and leave `ANALYZE_AUTH_API_URL` empty.
 
