@@ -1,0 +1,17 @@
+# Tutarlı satır sonları: depoda ve çalışma kopyasında her zaman LF.
+# (Windows'taki core.autocrlf=true'nun yarattığı sahte "değişti" gürültüsünü önler.)
+* text=auto eol=lf
+
+# İkili dosyalar — dönüştürme yok
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.pdf  binary
+*.zip  binary
+*.xlsx binary
+*.xls  binary
+*.woff  binary
+*.woff2 binary

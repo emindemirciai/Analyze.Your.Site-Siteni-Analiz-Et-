@@ -1,0 +1,34 @@
+services:
+  analyze:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      ANALYZE_SITE_ID: ${ANALYZE_SITE_ID}
+      ANALYZE_SITE_NAME: ${ANALYZE_SITE_NAME}
+      ANALYZE_TITLE_TR: ${ANALYZE_TITLE_TR:-}
+      ANALYZE_TITLE_EN: ${ANALYZE_TITLE_EN:-}
+      ANALYZE_METADATA_TITLE: ${ANALYZE_METADATA_TITLE:-}
+      ANALYZE_DESCRIPTION: ${ANALYZE_DESCRIPTION:-}
+      ANALYZE_HEALTH_NAME: ${ANALYZE_HEALTH_NAME:-}
+      ANALYZE_AUTH_MODE: ${ANALYZE_AUTH_MODE:-none}
+      ANALYZE_AUTH_API_URL: ${ANALYZE_AUTH_API_URL:-}
+      ANALYZE_ALLOWED_ORIGINS: ${ANALYZE_ALLOWED_ORIGINS}
+      ANALYZE_EVENT_SITES: ${ANALYZE_EVENT_SITES}
+      ANALYZE_DATA_DIR: ${ANALYZE_DATA_DIR:-/app/data}
+      ANALYZE_MAX_EVENTS: ${ANALYZE_MAX_EVENTS:-100000}
+      ANALYZE_GEO_LOOKUP: ${ANALYZE_GEO_LOOKUP:-true}
+    volumes:
+      - analyze_data:/app/data
+    expose:
+      - "3000"
+
+volumes:
+  analyze_data:
+
+networks:
+  default:
+    external: true
+    name: dokploy-network
