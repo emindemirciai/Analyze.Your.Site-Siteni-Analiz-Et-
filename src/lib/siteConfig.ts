@@ -74,8 +74,8 @@ export function getAnalyzeSiteConfig(environment: AnalyzeEnvironment = process.e
     : "none";
   const authApiUrl = normalizeOrigin(environment.ANALYZE_AUTH_API_URL?.trim() || "");
 
-  if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) {
-    throw new Error("ANALYZE_SITE_ID küçük harf, rakam, tire veya alt çizgi içermeli.");
+  if (!/^[a-z0-9](?:[a-z0-9._-]*[a-z0-9])?$/.test(id)) {
+    throw new Error("ANALYZE_SITE_ID küçük harf, rakam, nokta, tire veya alt çizgi içermeli.");
   }
 
   if (!allowedOrigins.length) {
@@ -95,12 +95,12 @@ export function getAnalyzeSiteConfig(environment: AnalyzeEnvironment = process.e
     id,
     name,
     dashboardTitle: {
-      tr: environment.ANALYZE_TITLE_TR?.trim() || `${name} Analiz`,
-      en: environment.ANALYZE_TITLE_EN?.trim() || `${name} Analyze`,
+      tr: environment.ANALYZE_TITLE_TR?.trim() || `${name} Siteni Analiz Et`,
+      en: environment.ANALYZE_TITLE_EN?.trim() || `${name} Analyze Your Site`,
     },
-    metadataTitle: environment.ANALYZE_METADATA_TITLE?.trim() || `${name} Analiz | Trafik Paneli`,
+    metadataTitle: environment.ANALYZE_METADATA_TITLE?.trim() || `${name} Siteni Analiz Et | Trafik Paneli`,
     description: environment.ANALYZE_DESCRIPTION?.trim() || `${name} için gerçek zamanlı trafik analiz paneli`,
-    healthName: environment.ANALYZE_HEALTH_NAME?.trim() || `${name} Analiz`,
+    healthName: environment.ANALYZE_HEALTH_NAME?.trim() || `${name} Siteni Analiz Et`,
     authMode,
     authApiUrl,
     allowedOrigins,

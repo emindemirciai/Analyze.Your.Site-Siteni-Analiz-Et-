@@ -1,4 +1,4 @@
-# Analyze Your Site
+# Siteni Analiz Et
 
 [Türkçe](README.md) | [English](README.en.md)
 
@@ -30,31 +30,31 @@ Yeni bir kurulumda `yourwebsite` yer tutucularını yalnız ilgili sitenin bilgi
 
 ## Eksiksiz Environment
 
-Her Dokploy Analyze uygulamasının Environment alanına siteye özel olarak aşağıdaki bloğun tamamını girin:
+Her Dokploy Siteni Analiz Et uygulamasının Environment alanına siteye özel olarak aşağıdaki bloğun tamamını girin:
 
 ```env
 NODE_ENV=production
-ANALYZE_SITE_ID=yourwebsite
-ANALYZE_SITE_NAME=Your Website
-ANALYZE_TITLE_TR=Your Website Analiz
-ANALYZE_TITLE_EN=Your Website Analyze
-ANALYZE_METADATA_TITLE=Your Website Analiz | Trafik Paneli
-ANALYZE_DESCRIPTION=Your Website için gerçek zamanlı trafik analiz paneli
-ANALYZE_HEALTH_NAME=Your Website Analiz
-ANALYZE_AUTH_MODE=none
-ANALYZE_AUTH_API_URL=
-ANALYZE_ALLOWED_ORIGINS=https://yourwebsite.com,https://www.yourwebsite.com
+ANALYZE_SITE_ID=yourwebsite.com
+ANALYZE_SITE_NAME=YourWebsite.com
+ANALYZE_TITLE_TR=YourWebsite.com Siteni Analiz Et
+ANALYZE_TITLE_EN=YourWebsite.com Analyze Your Site
+ANALYZE_METADATA_TITLE=YourWebsite.com Siteni Analiz Et | Trafik Paneli
+ANALYZE_DESCRIPTION=YourWebsite.com için gerçek zamanlı trafik analiz paneli
+ANALYZE_HEALTH_NAME=YourWebsite.com Siteni Analiz Et
+ANALYZE_AUTH_MODE=platform-admin
+ANALYZE_AUTH_API_URL=https://api.yourwebsite.com
+ANALYZE_ALLOWED_ORIGINS=https://yourwebsite.com,https://www.yourwebsite.com,https://yourwebsite.com/play
 ANALYZE_EVENT_SITES=yourwebsite.com,www.yourwebsite.com
 ANALYZE_DATA_DIR=/app/data
 ANALYZE_MAX_EVENTS=100000
 ANALYZE_GEO_LOOKUP=true
 ```
 
-Farklı bir site için aynı bloğu başka bir Dokploy projesindeki ayrı Analyze uygulamasına ekleyin. Birden fazla sitenin domainlerini tek uygulamanın environment alanında birleştirmeyin.
+Farklı bir site için aynı bloğu başka bir Dokploy projesindeki ayrı Siteni Analiz Et uygulamasına ekleyin. Birden fazla sitenin domainlerini tek uygulamanın environment alanında birleştirmeyin.
 
-### Yönetici Girişi Kullanılan Kurulum
+### Yönetici Girişi
 
-Panel harici bir platformun yönetici oturumuyla korunacaksa aynı siteye ait environment içinde şu değerleri kullanın:
+Yukarıdaki örnek, paneli harici platformun yönetici oturumuyla korur:
 
 ```env
 ANALYZE_AUTH_MODE=platform-admin
@@ -62,6 +62,8 @@ ANALYZE_AUTH_API_URL=https://api.yourwebsite.com
 ```
 
 Yetkilendirme API'sinin `/api/auth/login` ve `/api/admin/session` uçlarını sağlaması gerekir.
+
+Harici yönetici girişi kullanılmayacak bağımsız kurulumlarda `ANALYZE_AUTH_MODE=none` yazın ve `ANALYZE_AUTH_API_URL` değerini boş bırakın.
 
 ## Tracker
 
@@ -87,7 +89,7 @@ Her Compose uygulamasının `analyze_data` volume'u Dokploy proje adıyla ayrı 
 
 | Alan | Açıklama |
 | --- | --- |
-| `ANALYZE_SITE_ID` | Küçük harfli benzersiz site kimliği |
+| `ANALYZE_SITE_ID` | Küçük harfli benzersiz site veya alan adı kimliği |
 | `ANALYZE_SITE_NAME` | Panelde gösterilecek site adı |
 | `ANALYZE_TITLE_TR`, `ANALYZE_TITLE_EN` | Panel başlıkları |
 | `ANALYZE_METADATA_TITLE` | Tarayıcı sekmesi başlığı |

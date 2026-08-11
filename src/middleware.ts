@@ -6,7 +6,7 @@ import {
 } from "./lib/siteConfig";
 
 function configurationError(error: unknown) {
-  const message = error instanceof Error ? error.message : "Analyze yapılandırması okunamadı.";
+  const message = error instanceof Error ? error.message : "Siteni Analiz Et yapılandırması okunamadı.";
   return NextResponse.json({ message }, { status: 500 });
 }
 

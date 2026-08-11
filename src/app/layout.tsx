@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   } catch {
     return {
-      title: 'Analyze Your Site',
+      title: 'Siteni Analiz Et',
       description: 'Gerçek zamanlı trafik analiz paneli',
     };
   }

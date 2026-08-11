@@ -58,7 +58,7 @@ const ANALYZE_EVENTS_ENDPOINT = "/api/events";
 
 const dictionary = {
   tr: {
-    title: "Analyze",
+    title: "Siteni Analiz Et",
     panel: "Özel Takip Paneli",
     subtitle: "Gerçek zamanlı bağımsız sunucu trafik analitiği",
     last24: "Son 24 saat",
@@ -84,7 +84,7 @@ const dictionary = {
     apiError: "API verisi alınamadı.",
   },
   en: {
-    title: "Analyze",
+    title: "Analyze Your Site",
     panel: "Private Tracking Panel",
     subtitle: "Real-time independent server traffic analysis",
     last24: "Last 24 hours",
@@ -804,7 +804,7 @@ async function fetchAnalyzeEvents() {
   });
 
   if (!response.ok) {
-    throw new Error(`Analyze API error: ${response.status}`);
+    throw new Error(`Analyze Your Site API error: ${response.status}`);
   }
 
   const payload = await response.json();

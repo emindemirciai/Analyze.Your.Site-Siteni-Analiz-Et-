@@ -30,31 +30,31 @@ Replace the `yourwebsite` placeholders only with the details of the website bein
 
 ## Complete Environment
 
-Add the entire site-specific block below to the Environment section of each Dokploy Analyze application:
+Add the entire site-specific block below to the Environment section of each Dokploy Analyze Your Site application:
 
 ```env
 NODE_ENV=production
-ANALYZE_SITE_ID=yourwebsite
-ANALYZE_SITE_NAME=Your Website
-ANALYZE_TITLE_TR=Your Website Analiz
-ANALYZE_TITLE_EN=Your Website Analyze
-ANALYZE_METADATA_TITLE=Your Website Analyze | Traffic Panel
-ANALYZE_DESCRIPTION=Real-time traffic analysis panel for Your Website
-ANALYZE_HEALTH_NAME=Your Website Analyze
-ANALYZE_AUTH_MODE=none
-ANALYZE_AUTH_API_URL=
-ANALYZE_ALLOWED_ORIGINS=https://yourwebsite.com,https://www.yourwebsite.com
+ANALYZE_SITE_ID=yourwebsite.com
+ANALYZE_SITE_NAME=YourWebsite.com
+ANALYZE_TITLE_TR=YourWebsite.com Siteni Analiz Et
+ANALYZE_TITLE_EN=YourWebsite.com Analyze Your Site
+ANALYZE_METADATA_TITLE=YourWebsite.com Analyze Your Site | Traffic Panel
+ANALYZE_DESCRIPTION=Real-time traffic analysis panel for YourWebsite.com
+ANALYZE_HEALTH_NAME=YourWebsite.com Analyze Your Site
+ANALYZE_AUTH_MODE=platform-admin
+ANALYZE_AUTH_API_URL=https://api.yourwebsite.com
+ANALYZE_ALLOWED_ORIGINS=https://yourwebsite.com,https://www.yourwebsite.com,https://yourwebsite.com/play
 ANALYZE_EVENT_SITES=yourwebsite.com,www.yourwebsite.com
 ANALYZE_DATA_DIR=/app/data
 ANALYZE_MAX_EVENTS=100000
 ANALYZE_GEO_LOOKUP=true
 ```
 
-For another website, add a separate block to a separate Analyze application in that website's Dokploy project. Do not combine domains from multiple websites in one application's environment.
+For another website, add a separate block to a separate Analyze Your Site application in that website's Dokploy project. Do not combine domains from multiple websites in one application's environment.
 
-### Deployment With Administrator Authentication
+### Administrator Authentication
 
-Use these values when the panel should be protected by an external platform's administrator session:
+The example above protects the panel with an external platform's administrator session:
 
 ```env
 ANALYZE_AUTH_MODE=platform-admin
@@ -62,6 +62,8 @@ ANALYZE_AUTH_API_URL=https://api.yourwebsite.com
 ```
 
 The authentication API must provide `/api/auth/login` and `/api/admin/session` endpoints.
+
+For a standalone deployment without external administrator authentication, set `ANALYZE_AUTH_MODE=none` and leave `ANALYZE_AUTH_API_URL` empty.
 
 ## Tracker
 
@@ -87,7 +89,7 @@ The `analyze_data` volume is scoped to the Dokploy Compose project. Visit record
 
 | Variable | Description |
 | --- | --- |
-| `ANALYZE_SITE_ID` | Unique lowercase website identifier |
+| `ANALYZE_SITE_ID` | Unique lowercase website or domain identifier |
 | `ANALYZE_SITE_NAME` | Website name displayed in the panel |
 | `ANALYZE_TITLE_TR`, `ANALYZE_TITLE_EN` | Panel titles |
 | `ANALYZE_METADATA_TITLE` | Browser tab title |
