@@ -87,6 +87,8 @@ The `data-site` value must be included in `ANALYZE_EVENT_SITES`. Paths containin
 4. Add the tracker tag only to the related website.
 5. Deploy the application and verify `/api/health`.
 
+> In Dokploy, enable `Autodeploy`, set `Trigger Type` to `On Push`, and leave `Watch Paths` empty. Do not enter the start command in that field; otherwise GitHub pushes can be blocked by the changed-file filter.
+
 The `analyze_data` volume is scoped to the Dokploy Compose project. Visit records from different websites are never stored in the same volume.
 
 ## Environment Reference

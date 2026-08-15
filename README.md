@@ -87,6 +87,8 @@ Takip edilecek sitenin ana layout veya HTML şablonuna ekleyin:
 4. Tracker etiketini yalnız ilgili web sitesine ekleyin.
 5. Uygulamayı deploy edin ve `/api/health` adresini doğrulayın.
 
+> Dokploy'da `Autodeploy` açık, `Trigger Type` `On Push` olmalı. `Watch Paths` alanını boş bırakın; başlangıç komutu bu alana yazılmaz. Aksi halde GitHub pushları değişen dosya filtresine takılır ve dağıtım tetiklenmez.
+
 Her Compose uygulamasının `analyze_data` volume'u Dokploy proje adıyla ayrı oluşturulur. Farklı sitelerin ziyaret kayıtları aynı volume'u kullanmaz.
 
 ## Environment Alanları
