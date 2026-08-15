@@ -73,6 +73,7 @@ const dictionary = {
     geoMap: "Coğrafi Dağılım Harita",
     live: "Canlı Etkileşim",
     visitorLocations: "Ziyaretçi Konumları",
+    totalVisitors: "Toplam Ziyaretçi",
     pagePath: "Sayfa Yolu",
     entryPage: "Giriş Sayfası",
     referrers: "Yönlendiren Kaynaklar",
@@ -99,6 +100,7 @@ const dictionary = {
     geoMap: "Geographic Distribution Map",
     live: "Live Interaction",
     visitorLocations: "Visitor Locations",
+    totalVisitors: "Total Visitors",
     pagePath: "Page Path",
     entryPage: "Entry Page",
     referrers: "Referrers",
@@ -883,7 +885,11 @@ function SectionCard({
           {title}
         </h2>
         {rightText ? (
-          <span className={isDark ? "text-sm text-zinc-500" : "text-sm text-slate-500"}>
+          <span
+            className={`shrink-0 whitespace-nowrap text-sm font-semibold tabular-nums ${
+              isDark ? "text-zinc-400" : "text-slate-600"
+            }`}
+          >
             {rightText}
           </span>
         ) : null}
@@ -1346,7 +1352,13 @@ export default function DashboardClient({ site }: { site: AnalyzeSitePublicConfi
         </section>
 
         <section className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-3">
-          <SectionCard title={t.visitorLocations} theme={theme}>
+          <SectionCard
+            title={t.visitorLocations}
+            rightText={`${t.totalVisitors}: ${dashboardData.visitors.toLocaleString(
+              language === "tr" ? "tr-TR" : "en-US"
+            )}`}
+            theme={theme}
+          >
             <LocationBreakdown
               locations={dashboardData.locations}
               language={language}
